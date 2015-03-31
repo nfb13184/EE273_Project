@@ -1,0 +1,23 @@
+int main()
+{
+	string myfilename, mystring;
+	cout << "Please enter the directory of the file containing inventory." << endl;
+	cin >> myfilename;
+	ifstream inFile;
+	inFile.open(myfilename.c_str());
+
+	if (!inFile)
+	{
+		cout << "The program could not find the file you requested please ensure that the file is correct." << endl;
+		system("PAUSE");
+		return -1;
+	}
+	while (!inFile.eof())
+	{
+		getline(inFile, mystring);
+		//? = mystring
+	}
+	inFile.close();
+	system("PAUSE");
+	return 0;
+}
