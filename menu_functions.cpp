@@ -197,13 +197,17 @@ void search_menu(){
 	int option3;
 	cout << "1. Search by name.\n";
 	cout << "2. Search by barcode\n";
-	cout << "3. Back.\n";
+	cout << "3. Search by quantity.\n";
+	cout << "4. Search by expiry date.\n";
+	cout << "5. Back.\n";
 	cout << "   Please choose an option from the menu:\n";
 	cin >> option3;
 	
 	string line;
 	string name;
 	string bc;
+	int quantity;
+	string expiry_date;
 	food holder;
 	int hit;
 	switch (option3){
@@ -319,8 +323,120 @@ void search_menu(){
 		}
 		infile.close();
 		break;
-
+		
 	case 3:
+		//if the person wants to search by quantity
+		system("cls");
+		//get the quantity from user
+		cout << "Enter quantity: \n";
+		cin >> quantity;
+		//open file to be compared
+		infile.open("updated_food_list.csv");
+
+
+		if (!infile)
+		{
+			cout << "file cannot be located, make sure the file location is correct\n";
+			system("pause");
+			search_menu();
+
+		}
+
+
+		//until the end of file is reached, do this while loop
+		while (!infile.eof())
+		{
+
+
+			getline(infile, line);
+
+			if (line.empty())
+			{
+				continue;
+			}
+
+			holder = splitting_details_from_line(line);
+			//compare each food item with the barcode
+			if (quantity == holder.quantity){
+				//if food item found the variable hit will be set to 1
+				hit = 1;
+				cout << "Match found: \n";
+				cout << "            name: " << holder.food_name << endl;
+				cout << "            quantity: " << holder.quantity << endl;
+				cout << "            cost: \x9c " << holder.cost << endl;
+				cout << "            expiry date: " << holder.expiry_date << endl;
+				cout << "            barcode: " << holder.barcode << endl;
+				system("pause");
+				break;
+			}
+			//if food item not found the variable hit will be set to 0
+			else{ hit = 0; }
+		}
+		//message output to screen if the food item is not found
+		if (hit == 0){
+			cout << "No matches found, make sure the value is correct and try again\n";
+			system("pause");
+		}
+		infile.close();
+		break;
+
+	case 4:
+		//if the person wants to search by quantity
+		system("cls");
+		//get the quantity from user
+		cout << "Enter expiry date: \n";
+		cin >> expiry_date;
+		//open file to be compared
+		infile.open("updated_food_list.csv");
+
+
+		if (!infile)
+		{
+			cout << "file cannot be located, make sure the file location is correct\n";
+			system("pause");
+			search_menu();
+
+		}
+
+
+		//until the end of file is reached, do this while loop
+		while (!infile.eof())
+		{
+
+
+			getline(infile, line);
+
+			if (line.empty())
+			{
+				continue;
+			}
+
+			holder = splitting_details_from_line(line);
+			//compare each food item with the barcode
+			if (expiry_date == holder.expiry_date){
+				//if food item found the variable hit will be set to 1
+				hit = 1;
+				cout << "Match found: \n";
+				cout << "            name: " << holder.food_name << endl;
+				cout << "            quantity: " << holder.quantity << endl;
+				cout << "            cost: \x9c " << holder.cost << endl;
+				cout << "            expiry date: " << holder.expiry_date << endl;
+				cout << "            barcode: " << holder.barcode << endl;
+				system("pause");
+				break;
+			}
+			//if food item not found the variable hit will be set to 0
+			else{ hit = 0; }
+		}
+		//message output to screen if the food item is not found
+		if (hit == 0){
+			cout << "No matches found, make sure the value is correct and try again\n";
+			system("pause");
+		}
+		infile.close();
+		break;
+
+	case 5:
 		break;
 
 	default:cout << "\n\n Invalid option, please choose an appropriate option from the menu\n\n";
