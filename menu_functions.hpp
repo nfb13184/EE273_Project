@@ -5,13 +5,15 @@
 #include<iostream>
 #include <string>
 #include<fstream>
+#include<iomanip>
+#include <cctype>
 using namespace std;
 
 //structure "food" is an object that will store the listed variables before a file list is made
 struct food{
-	string food_name;
+	char food_name[100];
 	int quantity;
-	int cost;
+	float cost;
 	string expiry_date;
 	string barcode;
 
@@ -31,6 +33,9 @@ food splitting_details_from_line(string line);
 //the search function contains a mini menu to searche through the database of foods
 void search_menu();
 
-//edit_list function will allow user to edit single food items
 void edit_list();
+
+void delete_food(food *vector, int number_of_lines);
+void edit_item(food*vector, int number_of_lines);
+
 #endif;
