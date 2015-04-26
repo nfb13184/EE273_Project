@@ -14,14 +14,23 @@ int main()
 	system("cls");
 
 	/////outputing menu options
-	cout << "1.Make a new list.\n";
-	cout << "2.Display list.\n";
-	cout << "3.edit list.\n";
-	cout << "4.search.\n";
-	cout << "5.exit.\n";
-	cout << " Please choose an option:\n";
+	cout << "1. Make a new list\n";
+	cout << "2. Display list\n";
+	cout << "3. Edit list\n";
+	cout << "4. Search\n";
+	cout << "5. Exit\n";
+	cout << "\n Please choose an option:\n";
 	int option;
 	cin >> option;
+
+	while (cin.fail())
+	{
+		cout << "Invalid character.\n Please choose a valid option: \n";
+		cin.clear();
+		cin.ignore(256, '\n');
+		cin >> option;
+	}
+	
 
 	switch (option){
 
